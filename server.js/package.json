@@ -4,12 +4,17 @@
   "description": "Event Registration App",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js",
+    "dev": "nodemon index.js"
   },
   "author": "MD-Shahzaib",
   "license": "ISC",
   "dependencies": {
     "express": "^4.18.2",
     "mongoose": "^7.3.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
   }
 }

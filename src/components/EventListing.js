@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 
-function EventListing() {
-
+const EventListing = () => {
   const [events, setEvents] = useState([]);
   useEffect(() => {
     // Fetch all events.
@@ -19,16 +19,29 @@ function EventListing() {
   }, []);
 
   return (
-    <div className="container mx-auto px-4 py-8">
-      <h1 className="text-2xl font-bold mb-4">Event Listing</h1>
-      {/* Display the list of events. */}
-      {events.map((event) => (
-        <div key={event._id}>
-          <h3>{event.title}</h3>
-          <p>{event.description}</p>
+    <>
+      <div className="container mx-auto px-4 py-8">
+        <h1 className="text-4xl font-bold mb-8">Event Listing</h1>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+          {events.map((event) => (
+            <div key={event._id} className="bg-white shadow-md rounded-md p-6">
+              <h3 className="text-lg font-bold mb-2">{event.title}</h3>
+              <p className="text-gray-600">{event.description}</p>
+              <Link
+                to={`/event/${event._id}`}
+                className="inline-flex items-center mt-4 text-blue-500 hover:text-blue-700"
+              >
+                Learn More
+                <svg className="w-4 h-4 ml-2" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M5 12h14"></path>
+                  <path d="M12 5l7 7-7 7"></path>
+                </svg>
+              </Link>
+            </div>
+          ))}
         </div>
-      ))}
-    </div>
+      </div>
+    </>
   );
 }
 

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 
-function EventDetails() {
+const EventDetails = () => {
   const { id } = useParams();
   const [event, setEvent] = useState(null);
 
@@ -17,9 +17,18 @@ function EventDetails() {
 
   return (
     <div className="container mx-auto px-4 py-8">
-      <h1 className="text-2xl font-bold mb-4">{event.title}</h1>
-      <p>{event.description}</p>
-      <Link to={`/register/${event.id}`} className="text-blue-500">Register</Link>
+      <div className="bg-white rounded-lg shadow-lg p-6">
+        <h1 className="text-3xl font-bold mb-4">{event.title}</h1>
+        <p className="text-gray-600">{event.description}</p>
+        <div className="mt-4">
+          <Link
+            to={`/register/${event._id}`}
+            className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded"
+          >
+            Register
+          </Link>
+        </div>
+      </div>
     </div>
   );
 }

@@ -1,10 +1,9 @@
-// backend/routes/events.js
 const express = require("express");
 const router = express.Router();
 const Event = require("../models/Event");
 
 // Get all events
-router.get("/events", async (req, res) => {
+router.get("/", async (req, res) => {
     try {
         const events = await Event.find();
         res.json(events);
@@ -14,7 +13,7 @@ router.get("/events", async (req, res) => {
 });
 
 // Get event by ID
-router.get("/events/:id", async (req, res) => {
+router.get("/:id", async (req, res) => {
     try {
         const event = await Event.findById(req.params.id);
         if (!event) {
@@ -27,7 +26,7 @@ router.get("/events/:id", async (req, res) => {
 });
 
 // Create a new event
-router.post("/events", async (req, res) => {
+router.post("/", async (req, res) => {
     try {
         const event = new Event(req.body);
         await event.save();

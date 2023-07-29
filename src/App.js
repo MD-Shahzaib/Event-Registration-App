@@ -20,9 +20,9 @@ function App() {
         <Route path="/event/:id" element={<EventDetails />} />
         <Route path="/register/:id" element={<RegistrationForm />} />
         <Route path="/confirmation" element={<Confirmation />} />
+        <Route path="/profile" element={<Profile />} />
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/profile" element={<Profile />} />
       </Routes>
       <Footer />
     </Router>
@@ -41,8 +41,8 @@ Frontend.
 3- Protected routing.
 
 Backend.
-1- create RegisterEvent model.
-2- create routes for eventRegistration and auth.
-3- backend authentication logic.
-4- middleware for Protected routing.
+1- create RegisterEvent and auth model. ✔
+2- create routes for eventRegistration and auth. ✔
+3- backend authentication logic. ✔
+4- middleware for Protected routing. ✔
 */

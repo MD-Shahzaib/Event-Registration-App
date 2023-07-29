@@ -6,10 +6,25 @@ const Login = () => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log("email=", email, "password=", password);
-        // implement Login logic...
+        try {
+            const response = await fetch('', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email, password }),
+            });
+            if (response.ok) {
+                const { token } = await response.json();
+                localStorage.setItem('Token', token);
+                console.log("Login successfull");
+            } else {
+                const errorData = await response.json();
+                console.error("Registration failed:", errorData);
+            }
+        } catch (error) {
+            console.error('Error during login:', error);
+        }
     };
 
     return (
@@ -24,7 +39,7 @@ const Login = () => {
                     <label htmlFor="password" className="block text-sm font-medium">Password:</label>
                     <input type="password" id="password" value={password} onChange={(e) => setPassword(e.target.value)} className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring focus:border-blue-300" required placeholder="*********" />
                 </div>
-                <button type="submit" className="w-full px-4 py-2 mb-4 text-white bg-blue-500 rounded-lg hover:bg-blue-600 focus:outline-none focus:bg-blue-600">Sign In</button>
+                <button type="submit" className="w-full px-4 py-2 mb-4 text-white bg-blue-500 rounded-lg hover:bg-blue-600 focus:outline-none focus:bg-blue-600 font-semibold">Sign In</button>
                 <p className="text-blue-500 text-center text-sm font-normal hover:text-blue-600">Don't have an account? <Link to='/register' className="text-blue-600 font-semibold hover:text-blue-700"> Sign Up</Link></p>
             </form>
         </div>

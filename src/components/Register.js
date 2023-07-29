@@ -8,10 +8,24 @@ const Register = () => {
     const [password, setPassword] = useState('')
     const [phone, setPhone] = useState('')
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log("name=", name, "email=", email, "password=", password, "phone=", phone);
-        // implement registration logic...
+        try {
+            const response = await fetch("", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(name, email, password, phone)
+            });
+            if (response.ok) {
+                const data = await response.json();
+                console.log("Registration successful:", data);
+            } else {
+                const errorData = await response.json();
+                console.error("Registration failed:", errorData);
+            }
+        } catch (error) {
+            console.error("Error occurred:", error);
+        }
     };
 
     return (

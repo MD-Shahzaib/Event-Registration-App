@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+// import DropdownMenu from './DropdownMenu';
 
 const Navbar = () => {
     return (
@@ -14,6 +15,7 @@ const Navbar = () => {
                     <Link to='/profile' className="hover:text-white bg-gray-800 py-1 px-3 focus:outline-none hover:bg-gray-700 rounded text-base">Profile</Link>
                     <Link to='/register' className="hover:text-white bg-gray-800 py-1 px-3 focus:outline-none hover:bg-gray-700 rounded text-base">Sign Up</Link>
                     <Link to='/login' className="hover:text-white bg-gray-800 py-1 px-3 focus:outline-none hover:bg-gray-700 rounded text-base">Sign In</Link>
+                    {/* <DropdownMenu userName={user?.fullname} userEmail={user?.email} logout={handleLogout}/> */}
                 </nav>
             </div>
         </header>

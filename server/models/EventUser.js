@@ -10,7 +10,7 @@ const EventUser_Schema = new mongoose.Schema({
     email: { type: String, required: true, unique: true },
     password: { type: String, required: true },
     tokens: [String],
-});
+}, { timestamps: true });
 
 // (______________________________ [All-Methods] __________________________________)
 // Method (1) = Encrypt Password and save into database.

@@ -4,7 +4,7 @@ const Event = require("../models/Event");
 const verifyToken = require('../middleware/verifyToken');
 
 // Get all events (Endpoint: "http://localhost:5000/api/events" using "GET" (auth) Required).
-router.get("/", verifyToken, async (req, res) => {
+router.get("/", async (req, res) => {
     try {
         const events = await Event.find();
         res.json(events);

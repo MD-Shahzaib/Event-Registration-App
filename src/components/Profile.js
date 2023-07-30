@@ -9,12 +9,12 @@ const Profile = () => {
     });
     const [userPosts, setUserPosts] = useState([
         {
-            id: "4234523sdfsdf3453435",
+            id: "1",
             title: "tisdtfle titlea sd  das ddt it4le",
             body: "boSimulate fetching user details from the server (replace with actual API call"
         },
         {
-            id: "4234523sdfsdf3453435",
+            id: "2",
             title: "tisdtfle titlea sd  das ddt it4le",
             body: "boSimulate fetching user details from the server (replace with actual API call"
         },

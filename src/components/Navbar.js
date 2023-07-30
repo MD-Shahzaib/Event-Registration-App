@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
-// import DropdownMenu from './DropdownMenu';
+import { UserContext } from '../context/UserContext';
+import DropdownMenu from './DropdownMenu';
 
 const Navbar = () => {
+    const { user, handleLogout } = useContext(UserContext);
     return (
         <header className="text-gray-400 bg-gray-900 body-font">
             <div className="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
@@ -11,11 +13,17 @@ const Navbar = () => {
                     <span className="ml-3 text-xl">Event-Register-App</span>
                 </Link>
                 <nav className="md:ml-auto flex flex-wrap items-center text-base justify-center gap-2">
-                    <Link to='/' className="hover:text-white bg-gray-800 py-1 px-3 focus:outline-none hover:bg-gray-700 rounded text-base">Events</Link>
-                    <Link to='/profile' className="hover:text-white bg-gray-800 py-1 px-3 focus:outline-none hover:bg-gray-700 rounded text-base">Profile</Link>
-                    <Link to='/register' className="hover:text-white bg-gray-800 py-1 px-3 focus:outline-none hover:bg-gray-700 rounded text-base">Sign Up</Link>
-                    <Link to='/login' className="hover:text-white bg-gray-800 py-1 px-3 focus:outline-none hover:bg-gray-700 rounded text-base">Sign In</Link>
-                    {/* <DropdownMenu userName={user?.fullname} userEmail={user?.email} logout={handleLogout}/> */}
+                    {user ?
+                        <>
+                            <Link to='/' className="hover:text-white bg-gray-800 py-1 px-3 focus:outline-none hover:bg-gray-700 rounded text-base">Events</Link>
+                            <DropdownMenu userName={user?.fullname} userEmail={user?.email} logout={handleLogout} />
+                        </>
+                        :
+                        <>
+                            <Link to='/register' className="hover:text-white bg-gray-800 py-1 px-3 focus:outline-none hover:bg-gray-700 rounded text-base">Sign Up</Link>
+                            <Link to='/login' className="hover:text-white bg-gray-800 py-1 px-3 focus:outline-none hover:bg-gray-700 rounded text-base">Sign In</Link>
+                        </>
+                    }
                 </nav>
             </div>
         </header>

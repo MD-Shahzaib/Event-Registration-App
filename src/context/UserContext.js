@@ -1,22 +1,25 @@
 import React, { createContext, useState, useEffect } from 'react';
 
 export const UserContext = createContext();
-
 export const UserContextProvider = ({ children }) => {
-
     const [user, setUser] = useState(null);
-
     useEffect(() => {
         const fetchUser = async () => {
-            const token = localStorage.getItem('Token');
-            if (!token) { setUser(null) };
-            const authToken = JSON.parse(token).token;
             try {
-                const response = await fetch("", {
-                    headers: { Authorization: `Bearer ${authToken}` }
-                });
-                const userData = await response.json();
-                setUser(userData.data);
+                const token = localStorage.getItem('Token');
+                if (token) {
+                    const response = await fetch("http://localhost:5000/api/users/profile", {
+                        headers: { Authorization: `Bearer ${token}` },
+                    });
+                    if (!response.ok) {
+                        throw new Error('Failed to fetch user data');
+                    }
+                    const userData = await response.json();
+                    setUser(userData.data);
+                } else {
+                    console.log("Invalid Token");
+                    setUser(null);
+                }
             } catch (error) {
                 console.log(error);
                 setUser(null);
@@ -24,13 +27,11 @@ export const UserContextProvider = ({ children }) => {
         }
         fetchUser();
     }, []);
-
     const handleLogout = () => {
-        localStorage.removeItem('UserInfo');
+        localStorage.removeItem('Token');
         setUser(null);
         window.location.reload();
     };
-
     return (
         <UserContext.Provider value={{ user, handleLogout }}>
             {children}

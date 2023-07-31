@@ -17,7 +17,7 @@ router.get('/', verifyToken, async (req, res) => {
 router.get('/profile', verifyToken, async (req, res) => {
     try {
         const { _id } = req.decoded
-        const userData = await Users.findById(_id).select("-password");
+        const userData = await Users.findById(_id).select("-password -tokens");
         res.status(200).json({ message: "Success", data: userData });
     } catch (error) {
         res.status(500).json({ message: "Error fetching user profile", error });

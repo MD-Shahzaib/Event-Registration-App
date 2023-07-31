@@ -19,8 +19,8 @@ const Login = () => {
             if (response.status === 200) {
                 const { token } = await response.json();
                 localStorage.setItem('Token', token);
-                navigate('/')
-                console.log("Login successfull");
+                navigate('/');
+                window.location.reload();
             } else {
                 console.log("failed to Login");
             }

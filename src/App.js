@@ -1,16 +1,16 @@
 import React, { useContext } from 'react';
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { UserContext } from './context/UserContext';
 // Components.
 import Navbar from './components/Navbar';
 import EventListing from './components/EventListing';
 import Profile from './components/Profile';
 import EventDetails from './components/EventDetails';
-import RegistrationForm from './components/RegistrationForm';
 import Confirmation from './components/Confirmation';
 import Register from './components/Register';
 import Login from './components/Login';
 import Footer from './components/Footer';
+import Page404 from './components/Page404';
 
 function App() {
   const { user } = useContext(UserContext);
@@ -18,24 +18,49 @@ function App() {
     <Router>
       <Navbar />
       <Routes>
-        {user ?
-          <>
-            <Route path="/" element={<EventListing />} />
-            <Route path="/profile" element={<Profile />} />
-            <Route path="/event/:id" element={<EventDetails />} />
-            <Route path="/register/:id" element={<RegistrationForm />} />
-            <Route path="/confirmation" element={<Confirmation />} />
-            {/* Error Handling Route */}
-            <Route path="*" element={<div className='m-10 p-5 text-center text-xl font-normal rounded-md bg-blue-200 text-blue-500 hover:text-blue-600'>Sorry, the page you visited does not exist.<Link to='/' className='text-blue-600 hover:text-blue-700 font-semibold'> Back to Home</Link></div>} />
-          </>
-          :
-          <>
-            <Route path="/register" element={<Register />} />
-            <Route path="/login" element={<Login />} />
-            {/* Error Handling Route */}
-            <Route path="*" element={<div className='m-10 p-5 text-center text-xl font-normal rounded-md bg-blue-200 text-blue-500 hover:text-blue-600'>Sorry, the page you visited does not exist.<Link to='/login' className='text-blue-600 hover:text-blue-700 font-semibold'> Back to Home</Link></div>} />
-          </>
-        }
+        <Route path="/" element={
+          <ProtectedRoute
+            user={user}
+            route={<EventListing />}
+            navigateTo='/login'
+          />}
+        />
+        <Route path="/profile" element={
+          <ProtectedRoute
+            user={user}
+            route={<Profile />}
+            navigateTo='/login'
+          />}
+        />
+        <Route path="/event/:id" element={
+          <ProtectedRoute
+            user={user}
+            route={<EventDetails />}
+            navigateTo='/login'
+          />}
+        />
+        <Route path="/confirmation" element={
+          <ProtectedRoute
+            user={user}
+            route={<Confirmation />}
+            navigateTo='/login'
+          />}
+        />
+        <Route path="/register" element={
+          <ProtectedRoute
+            user={!user}
+            route={<Register />}
+            navigateTo='/'
+          />}
+        />
+        <Route path="/login" element={
+          <ProtectedRoute
+            user={!user}
+            route={<Login />}
+            navigateTo='/'
+          />}
+        />
+        <Route path="*" element={<Page404 />} />
       </Routes>
       <Footer />
     </Router>
@@ -44,17 +69,18 @@ function App() {
 
 export default App;
 
+// Protected-Route-Component.
+function ProtectedRoute({ user, route, navigateTo }) {
+  return user ? route : <Navigate to={navigateTo} replace={true} />
+};
+
 // Todo's
 /*
-Frontend.
-1- create (register, login, profile) pages. ✔
-2- frontend userContext. ✔
-3- frontend authentication logic. ✔
-4- Protected routing. (50% ✔)
-
-Backend.
-1- create RegisterEvent and auth model. ✔
-2- create routes for eventRegistration and auth. ✔
-3- backend authentication logic. ✔
-4- middleware for Protected routing. ✔
+1: eventListing page design and add a link to eventDetail. ✔
+2: eventDetail page design and add a link to Register of event. ✔
+3: After Register successfully redirect to confirmation page.
+4: Hide Register event into eventListing page.
+5: Create User Events Context and show register events of user.
+6: Profile page design and show register events of user and user details.
+(Complete)
 */

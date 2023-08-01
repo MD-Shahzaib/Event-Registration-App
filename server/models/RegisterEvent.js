@@ -1,12 +1,12 @@
 const mongoose = require("mongoose");
 
-const RegisterEvent_Schema = new mongoose.Schema({
-    eventUser: { type: mongoose.Schema.Types.ObjectId, ref: "event_users" },
-    eventId: { type: String, required: true },
+const registerEventSchema = new mongoose.Schema({
+    userId: { type: mongoose.Schema.Types.ObjectId, ref: "EventUsers" },
+    eventId: { type: mongoose.Schema.Types.ObjectId, ref: "Events" },
     eventTitle: { type: String, required: true },
     eventPeople: { type: Number, required: true },
     eventPrice: { type: Number, required: true },
 }, { timestamps: true });
 
-const EventRegister = mongoose.model("Register_Events", RegisterEvent_Schema);
+const EventRegister = mongoose.model("RegisterEvents", registerEventSchema);
 module.exports = EventRegister;

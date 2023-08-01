@@ -30,7 +30,9 @@ router.get("/:id", verifyToken, async (req, res) => {
 // Register a new event (Endpoint: "http://localhost:5000/api/register" using "POST" (auth required).
 router.post("/", verifyToken, async (req, res) => {
     try {
-        const newEvent = new EventRegister(req.body);
+        const user = req.decoded;
+        const { eventId, eventTitle, eventPeople, eventPrice } = req.body;
+        const newEvent = new EventRegister({ eventId, eventTitle, eventPeople, eventPrice, userId: user._id });
         const savedEvent = await newEvent.save();
         res.status(201).json(savedEvent);
     } catch (err) {

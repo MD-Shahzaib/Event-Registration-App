@@ -1,4 +1,3 @@
-// Event Schema for Create Event of event-register-app. (only admin)
 const mongoose = require("mongoose");
 
 const eventSchema = new mongoose.Schema({

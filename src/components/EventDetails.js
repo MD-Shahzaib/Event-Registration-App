@@ -32,6 +32,7 @@ const EventDetails = () => {
         body: JSON.stringify({
           eventId: event._id,
           eventTitle: event.title,
+          eventDesc: event.description,
           eventPeople: eventPeople,
           eventPrice: eventPrice
         })

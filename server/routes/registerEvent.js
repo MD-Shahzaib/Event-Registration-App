@@ -3,11 +3,21 @@ const router = express.Router();
 const EventRegister = require("../models/RegisterEvent");
 const verifyToken = require("../middleware/verifyToken");
 
-
 // Get all registered events (Endpoint: "http://localhost:5000/api/register" using "GET" (auth required).
 router.get("/", verifyToken, async (req, res) => {
     try {
         const events = await EventRegister.find();
+        res.json(events);
+    } catch (err) {
+        res.status(500).json({ message: "Events not found" });
+    }
+});
+
+// Get all User Events (Endpoint: "http://localhost:5000/api/register/userevents" using "GET" (auth required).
+router.get("/userevents", verifyToken, async (req, res) => {
+    try {
+        const userId = req.decoded._id
+        const events = await EventRegister.find({ userId });
         res.json(events);
     } catch (err) {
         res.status(500).json({ message: "Events not found" });
@@ -31,8 +41,8 @@ router.get("/:id", verifyToken, async (req, res) => {
 router.post("/", verifyToken, async (req, res) => {
     try {
         const user = req.decoded;
-        const { eventId, eventTitle, eventPeople, eventPrice } = req.body;
-        const newEvent = new EventRegister({ eventId, eventTitle, eventPeople, eventPrice, userId: user._id });
+        const { eventId, eventTitle, eventDesc, eventPeople, eventPrice } = req.body;
+        const newEvent = new EventRegister({ eventId, eventTitle, eventDesc, eventPeople, eventPrice, userId: user._id });
         const savedEvent = await newEvent.save();
         res.status(201).json(savedEvent);
     } catch (err) {

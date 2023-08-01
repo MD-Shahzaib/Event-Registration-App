@@ -79,8 +79,8 @@ function ProtectedRoute({ user, route, navigateTo }) {
 1: eventListing page design and add a link to eventDetail. ✔
 2: eventDetail page design and add a link to Register of event. ✔
 3: After Register successfully redirect to confirmation page. ✔
-4: Create User Events Context and show register events of user.
-5: Profile page design and show register events of user and user details.
+4: Create User Events Context and show register events of user. ✔
+5: Profile page design and show register events of user and user details. ✔
 6: Hide Register event into eventListing page.
 (Complete)
 */

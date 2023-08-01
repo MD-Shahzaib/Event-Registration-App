@@ -1,21 +1,9 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
+import { Link } from 'react-router-dom';
 import { UserContext } from '../context/UserContext';
 
 const Profile = () => {
-    const { user, handleLogout } = useContext(UserContext);
-    const [userEvents, setUserEvents] = useState([
-        {
-            id: "1",
-            title: "tisdtfle titlea sd  das ddt it4le",
-            body: "boSimulate fetching user details from the server (replace with actual API call"
-        },
-        {
-            id: "2",
-            title: "tisdtfle titlea sd  das ddt it4le",
-            body: "boSimulate fetching user details from the server (replace with actual API call"
-        },
-    ]);
-
+    const { user, userEvents } = useContext(UserContext);
     return (
         <div className="py-10 bg-gray-100">
             <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -44,16 +32,32 @@ const Profile = () => {
                 {/* User Events Section */}
                 <div className="mt-8 bg-white shadow overflow-hidden sm:rounded-lg">
                     <div className="px-4 py-5 sm:px-6">
-                        <h3 className="text-lg leading-6 font-medium text-gray-900">Your Events</h3>
+                        <h3 className="text-lg leading-6 font-medium text-gray-900">Your Events ({userEvents.length})</h3>
                     </div>
                     <div className="border-t border-gray-200 px-4 sm:px-6">
                         <div className="mb-4 space-y-4">
-                            {userEvents.map((event) => (
-                                <div key={event.id} className="border-b border-gray-200 py-4">
-                                    <h4 className="text-lg font-medium text-gray-900">{event.title}</h4>
-                                    <p className="text-gray-500 mt-2">{event.body}</p>
-                                </div>
-                            ))}
+                            {userEvents?.map((event) => {
+
+                                const { _id, eventTitle, eventDesc, eventPeople, eventPrice, createdAt } = event;
+                                // CREATE DATE FORMATER.
+                                const date = new Date(createdAt);
+                                const createdDate = (date.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" }));
+
+                                return (
+                                    <div key={_id} className="border-b border-gray-200 py-4">
+                                        <div className="flex justify-between items-center">
+                                            <h4 className="text-base font-medium text-gray-900">{eventTitle}</h4>
+                                            <p className="text-slate-600 font-semibold text-sm">{createdDate}</p>
+                                        </div>
+                                        <p className='text-sm font-medium text-gray-700 mt-2'>{eventDesc}</p>
+                                        <div className="flex items-center my-1">
+                                            <p className="text-slate-500 mr-5 text-sm font-medium">People: <span className='text-slate-800 font-semibold text-base'>{eventPeople}</span></p>
+                                            <p className="text-slate-500 mr-5 text-sm font-medium">Price: <span className='text-slate-800 font-semibold text-base'>{eventPrice} <span className='text-xs'>&#8360;</span></span></p>
+                                        </div>
+                                        <Link to={`/event/${event.eventId}`} className="inline-flex items-center text-blue-500 hover:text-blue-700">Learn More<svg className="w-4 h-4 ml-2" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14"></path><path d="M12 5l7 7-7 7"></path></svg></Link>
+                                    </div>
+                                )
+                            })}
                         </div>
                     </div>
                 </div>

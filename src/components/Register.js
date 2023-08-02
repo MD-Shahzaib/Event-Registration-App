@@ -19,14 +19,12 @@ const Register = () => {
                 body: JSON.stringify({ fullname, email, password, phone })
             });
             if (response.status === 201) {
-                const data = await response.json();
-                console.log("Registration successful", data);
                 navigate('/login')
             } else {
-                console.log("Registration failed");
+                alert("Registration failed, try again Later");
             }
         } catch (error) {
-            console.log("Internal Server Error:", error);
+            alert("Internal Server Error");
         }
     };
 

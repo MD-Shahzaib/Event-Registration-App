@@ -22,10 +22,10 @@ const Login = () => {
                 navigate('/');
                 window.location.reload();
             } else {
-                console.log("failed to Login");
+                alert("Invalid Credentials");
             }
         } catch (error) {
-            console.log('Error during login:', error);
+            alert('Internal Server Error');
         }
     };
 
@@ -49,4 +49,3 @@ const Login = () => {
 };
 
 export default Login;
-

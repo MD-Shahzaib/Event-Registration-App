@@ -81,6 +81,37 @@ function ProtectedRoute({ user, route, navigateTo }) {
 3: After Register successfully redirect to confirmation page. ✔
 4: Create User Events Context and show register events of user. ✔
 5: Profile page design and show register events of user and user details. ✔
-6: Hide Register event into eventListing page.
+6: Hide Registerevent if already registered. ✔
 (Complete)
+*/
+
+// Future Features and updations.
+/*
+ {
+    eventId: 1,
+    eventTitle: "Conference on Artificial Intelligence",
+    eventDescription: "Join us for a conference exploring the latest advancements in Artificial Intelligence.",
+    eventCategory: "Technology",
+    eventDate: "2023-08-15",
+    eventLocation: "Virtual",
+    eventOrganizer: "AI Innovations Inc.",
+  },
+  {
+    eventId: 2,
+    eventTitle: "Music Festival",
+    eventDescription: "Experience the best music from around the world at our annual music festival.",
+    eventCategory: "Entertainment",
+    eventDate: "2023-09-25",
+    eventLocation: "City Park",
+    eventOrganizer: "Music Fest Events",
+  },
+  {
+    eventId: 3,
+    eventTitle: "Wellness Retreat",
+    eventDescription: "Recharge and rejuvenate with our wellness retreat focusing on mindfulness and self-care.",
+    eventCategory: "Health & Wellness",
+    eventDate: "2023-10-10",
+    eventLocation: "Mountain Resort",
+    eventOrganizer: "Mindful Living Retreats",
+  },
 */

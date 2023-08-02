@@ -14,71 +14,39 @@ const Footer = () => {
                 </div>
                 <div className="flex-grow flex flex-wrap md:pl-20 -mb-10 md:mt-0 mt-10 md:text-left text-center">
                     <div className="lg:w-1/4 md:w-1/2 w-full px-4">
-                        <h2 className="title-font font-medium text-white tracking-widest text-sm mb-3">CATEGORIES</h2>
+                        <h2 className="title-font font-medium text-white tracking-widest text-sm mb-3">ABOUT</h2>
                         <nav className="list-none mb-10">
-                            <li>
-                                <Link to='/' className="text-gray-400 hover:text-white">First Link</Link>
-                            </li>
-                            <li>
-                                <Link to='/' className="text-gray-400 hover:text-white">Second Link</Link>
-                            </li>
-                            <li>
-                                <Link to='/' className="text-gray-400 hover:text-white">Third Link</Link>
-                            </li>
-                            <li>
-                                <Link to='/' className="text-gray-400 hover:text-white">Fourth Link</Link>
-                            </li>
+                            <li><Link to='/' className="text-gray-400 hover:text-white">Contact</Link></li>
+                            <li><Link to='/' className="text-gray-400 hover:text-white">Services</Link></li>
+                            <li><Link to='/' className="text-gray-400 hover:text-white">Blog</Link></li>
+                            <li><Link to='/' className="text-gray-400 hover:text-white">Careers</Link></li>
                         </nav>
                     </div>
                     <div className="lg:w-1/4 md:w-1/2 w-full px-4">
                         <h2 className="title-font font-medium text-white tracking-widest text-sm mb-3">CATEGORIES</h2>
                         <nav className="list-none mb-10">
-                            <li>
-                                <Link to='/' className="text-gray-400 hover:text-white">First Link</Link>
-                            </li>
-                            <li>
-                                <Link to='/' className="text-gray-400 hover:text-white">Second Link</Link>
-                            </li>
-                            <li>
-                                <Link to='/' className="text-gray-400 hover:text-white">Third Link</Link>
-                            </li>
-                            <li>
-                                <Link to='/' className="text-gray-400 hover:text-white">Fourth Link</Link>
-                            </li>
+                            <li><Link to='/' className="text-gray-400 hover:text-white">Sports</Link></li>
+                            <li><Link to='/' className="text-gray-400 hover:text-white">Health</Link></li>
+                            <li><Link to='/' className="text-gray-400 hover:text-white">Education</Link></li>
+                            <li><Link to='/' className="text-gray-400 hover:text-white">Entertainment</Link></li>
                         </nav>
                     </div>
                     <div className="lg:w-1/4 md:w-1/2 w-full px-4">
-                        <h2 className="title-font font-medium text-white tracking-widest text-sm mb-3">CATEGORIES</h2>
+                        <h2 className="title-font font-medium text-white tracking-widest text-sm mb-3">SOCIAL</h2>
                         <nav className="list-none mb-10">
-                            <li>
-                                <Link to='/' className="text-gray-400 hover:text-white">First Link</Link>
-                            </li>
-                            <li>
-                                <Link to='/' className="text-gray-400 hover:text-white">Second Link</Link>
-                            </li>
-                            <li>
-                                <Link to='/' className="text-gray-400 hover:text-white">Third Link</Link>
-                            </li>
-                            <li>
-                                <Link to='/' className="text-gray-400 hover:text-white">Fourth Link</Link>
-                            </li>
+                            <li><Link to='/' className="text-gray-400 hover:text-white">Facebook</Link></li>
+                            <li><Link to='/' className="text-gray-400 hover:text-white">Twitter</Link></li>
+                            <li><Link to='/' className="text-gray-400 hover:text-white">Instagram</Link></li>
+                            <li><Link to='/' className="text-gray-400 hover:text-white">Linkedin</Link></li>
                         </nav>
                     </div>
                     <div className="lg:w-1/4 md:w-1/2 w-full px-4">
-                        <h2 className="title-font font-medium text-white tracking-widest text-sm mb-3">CATEGORIES</h2>
+                        <h2 className="title-font font-medium text-white tracking-widest text-sm mb-3">HELP</h2>
                         <nav className="list-none mb-10">
-                            <li>
-                                <Link to='/' className="text-gray-400 hover:text-white">First Link</Link>
-                            </li>
-                            <li>
-                                <Link to='/' className="text-gray-400 hover:text-white">Second Link</Link>
-                            </li>
-                            <li>
-                                <Link to='/' className="text-gray-400 hover:text-white">Third Link</Link>
-                            </li>
-                            <li>
-                                <Link to='/' className="text-gray-400 hover:text-white">Fourth Link</Link>
-                            </li>
+                            <li><Link to='/' className="text-gray-400 hover:text-white">Payments</Link></li>
+                            <li><Link to='/' className="text-gray-400 hover:text-white">Shipping</Link></li>
+                            <li><Link to='/' className="text-gray-400 hover:text-white">FAQ</Link></li>
+                            <li><Link to='/' className="text-gray-400 hover:text-white">Report</Link></li>
                         </nav>
                     </div>
                 </div>

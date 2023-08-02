@@ -11,7 +11,7 @@ const EventListing = () => {
         const data = await response.json();
         setEvents(data);
       } catch (error) {
-        alert('Error Fetching Events:', error);
+        alert('Internal Server Error on Fetching Events');
       }
     };
     fetchEvents();
@@ -31,8 +31,8 @@ const EventListing = () => {
                       <img src={event.image} alt={event.title} className='w-full object-cover object-center hover:scale-150' />
                     </div>
                     <div className='p-3'>
-                      <h3 className="text-lg font-bold">{event.title}</h3>
-                      <p className="text-gray-600 my-2">{event.description}</p>
+                      <h3 className="text-lg font-bold">{event.title.length > 50 ? event.title.slice(0, 50) + "..." : event.title}</h3>
+                      <p className="text-gray-600 my-2">{event.description.length > 150 ? event.description.slice(0, 150) + "..." : event.description}</p>
                       <Link to={`/event/${event._id}`} className="inline-flex items-center text-blue-500 hover:text-blue-700">Learn More<svg className="w-4 h-4 ml-2" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14"></path><path d="M12 5l7 7-7 7"></path></svg></Link>
                     </div>
                   </div>
@@ -40,7 +40,7 @@ const EventListing = () => {
               </div>
             </>
             :
-            <p className="text-base font-semibold">No more events exists. just wait...</p>
+            <p className="text-base font-semibold">No more events exist. Just wait until new events are added or check back later for upcoming events.</p>
           }
         </div >
       </section>

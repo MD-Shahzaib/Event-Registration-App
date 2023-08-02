@@ -22,11 +22,9 @@ export const UserContextProvider = ({ children }) => {
                     const userData = await response.json();
                     setUser(userData.data);
                 } else {
-                    console.log("Invalid Token");
                     setUser(null);
                 }
             } catch (error) {
-                console.log(error);
                 setUser(null);
             }
         }
@@ -55,11 +53,9 @@ export const UserContextProvider = ({ children }) => {
                     const userEventsData = await response.json();
                     setUserEvents(userEventsData);
                 } else {
-                    console.log("Invalid Token");
                     setUserEvents([]);
                 }
             } catch (error) {
-                console.log(error);
                 setUserEvents([]);
             }
         }

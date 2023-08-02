@@ -1,8 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
+import { UserContext } from '../context/UserContext';
 
 const EventDetails = () => {
 
+  const { userEvents } = useContext(UserContext);
   const navigate = useNavigate();
   const { id } = useParams();
   const token = localStorage.getItem('Token');
@@ -17,7 +19,7 @@ const EventDetails = () => {
       .then((response) => response.json())
       .then((data) => setEvent(data))
       .catch((error) => console.error("Error fetching event details:", error));
-  }, [id]);
+  }, [id, token]);
 
   // Handle RegisterEvent and save data into the database.
   const handleRegisterEvent = async () => {
@@ -44,7 +46,7 @@ const EventDetails = () => {
         alert('Failed to register event. Please try again later.');
       }
     } catch (error) {
-      console.log("Internal Server error", error);
+      alert("Internal Server error");
     }
   };
 
@@ -75,11 +77,19 @@ const EventDetails = () => {
                     <span className="absolute right-0 top-0 h-full w-10 text-center text-gray-600 pointer-events-none flex items-center justify-center"><svg fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" className="w-4 h-4" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"></path></svg></span>
                   </div>
                 </div>
-                <button onClick={handleRegisterEvent} className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 my-4 rounded focus:outline-none">Register</button>
+                <div className="flex justify-between items-center flex-wrap">
+                  <button
+                    onClick={handleRegisterEvent}
+                    disabled={userEvents.some(eid => eid.eventId === event._id)}
+                    className={`bg-blue-500 hover:bg-blue-600 text-white font-semibold text-lg py-2 px-5 my-4 rounded focus:outline-none disabled:bg-blue-400`}>
+                    {userEvents.some(eid => eid.eventId === event._id) ? "Registered" : "Register"}
+                  </button >
+                  {userEvents.some(eid => eid.eventId === event._id) && <span className='text-green-600 font-semibold text-lg bg-green-200 py-2 px-5 rounded'>Event Registered</span>}
+                </div>
               </div>
             </div>
-          </div>
-        </section>
+          </div >
+        </section >
         :
         <div className='m-5 text-center'>Loading...</div>
       }

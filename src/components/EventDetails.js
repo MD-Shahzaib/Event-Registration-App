@@ -13,7 +13,7 @@ const EventDetails = () => {
 
   // Fetch event details for the specific eventId from the database.
   useEffect(() => {
-    fetch(`http://localhost:5000/api/events/${id}`, {
+    fetch(`${process.env.REACT_APP_API_BASE_URL}/api/events/${id}`, {
       headers: { Authorization: `Bearer ${token}` }
     })
       .then((response) => response.json())
@@ -28,7 +28,7 @@ const EventDetails = () => {
     };
     const [eventPeople, eventPrice] = selectedOption.split('/');
     try {
-      const response = await fetch('http://localhost:5000/api/register', {
+      const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/api/register`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
         body: JSON.stringify({
